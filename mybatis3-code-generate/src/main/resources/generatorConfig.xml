@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+       Copyright 2006-2016 the original author or authors.
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+-->
+<!DOCTYPE generatorConfiguration PUBLIC
+ "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+ "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <properties resource="generator.properties"/>
+  <!-- basedata -->
+  <context id="basedata"  targetRuntime="MyBatis3">
+    <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+    <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
+    <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+    <commentGenerator> <property name="suppressAllComments" value="true" /></commentGenerator> 
+
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="${database.url}" 
+    				userId="${database.user}" 
+    				password="${database.password}">
+	</jdbcConnection>
+
+    <javaModelGenerator targetPackage="${generator.pkg.basedata}.model" targetProject="MAVEN">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+
+    <sqlMapGenerator targetPackage="${generator.pkg.basedata}.xml"  targetProject="MAVEN">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+    <javaClientGenerator type="XMLMAPPER" targetPackage="${generator.pkg.basedata}.mapper"  targetProject="MAVEN">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+
+    <table tableName="tf_user" domainObjectName="User"/>
+    <table tableName="tf_user_token" domainObjectName="UserToken"/>
+    <table tableName="tf_role" domainObjectName="Role"/>
+    <table tableName="tf_user_role" domainObjectName="UserRole"/>
+    <table tableName="tf_user_data_ref" domainObjectName="UserDataRef"/>
+    <table tableName="tf_i18n" domainObjectName="I18n"/>
+    <table tableName="tf_lookup" domainObjectName="Lookup"/>
+    <table tableName="tf_lookup_item" domainObjectName="LookupItem"/>
+    <table tableName="tf_log_db" domainObjectName="LogDb"/>
+    <table tableName="tf_log_login" domainObjectName="LogLogin"/>
+    <table tableName="tf_log_msg" domainObjectName="LogMsg"/>
+    <table tableName="tf_log_msg_detail" domainObjectName="LogMsgDetail"/>
+  </context>
+  
+  <!-- extdata -->
+  <context id="extdata"  targetRuntime="MyBatis3">
+    <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+    <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
+    <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+    <commentGenerator> <property name="suppressAllComments" value="true" /></commentGenerator> 
+
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="${database.url}" 
+    				userId="${database.user}" 
+    				password="${database.password}">
+	</jdbcConnection>
+
+    <javaModelGenerator targetPackage="${generator.pkg.extdata}.model" targetProject="MAVEN">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+
+    <sqlMapGenerator targetPackage="${generator.pkg.extdata}.xml"  targetProject="MAVEN">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+    <javaClientGenerator type="XMLMAPPER" targetPackage="${generator.pkg.extdata}.mapper"  targetProject="MAVEN">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+
+    <table tableName="te_table" />
+    <table tableName="te_table_define" />
+    <table tableName="tg_column" />
+    <table tableName="tg_row" />
+    <table tableName="tg_table_type" />
+  </context>
+  
+  <!-- gateway interface -->
+  <context id="gateway"  targetRuntime="MyBatis3">
+    <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+    <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
+    <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+    <commentGenerator> <property name="suppressAllComments" value="true" /></commentGenerator> 
+
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="${database.url}" 
+    				userId="${database.user}" 
+    				password="${database.password}">
+	</jdbcConnection>
+
+    <javaModelGenerator targetPackage="${generator.pkg.gateway}.model" targetProject="MAVEN">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+
+    <sqlMapGenerator targetPackage="${generator.pkg.gateway}.xml"  targetProject="MAVEN">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+    <javaClientGenerator type="XMLMAPPER" targetPackage="${generator.pkg.gateway}.mapper"  targetProject="MAVEN">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+
+    <table tableName="tg_user"  domainObjectName="User"/>
+    <table tableName="tg_role" domainObjectName="Role"/>
+    <table tableName="tg_role_service_func" domainObjectName="RoleServiceFunc"/>
+    <table tableName="tg_user_role" domainObjectName="UserRole"/>
+    <table tableName="tg_system_info" domainObjectName="SystemInfo"/>
+    <table tableName="tg_service_info" domainObjectName="ServiceInfo"/>
+    <table tableName="tg_service_func" domainObjectName="ServiceFunc"/>
+    <table tableName="tg_system_service_rel" domainObjectName="SystemServiceRel"/>
+    <table tableName="tg_user_service_rel" domainObjectName="UserServiceRel"/>
+  
+  </context>
+</generatorConfiguration>

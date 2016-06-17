@@ -67,7 +67,7 @@ public class CommentChineseGenerator extends DefaultCommentGenerator {
     		String comment=this.getComment(classComment);
 //    		System.out.println("-------comment="+comment);
         	innerClass.addJavaDocLine(comment); //$NON-NLS-1$
-        	addJavadocTag(innerClass, false);
+//        	addJavadocTag(innerClass, false);
         }
     	else{
     		super.addClassComment(innerClass, introspectedTable);

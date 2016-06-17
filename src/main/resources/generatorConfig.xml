@@ -27,10 +27,10 @@
     <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
     <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
     <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
-    <plugin type="org.mybatis.generator.plugins.MapperPaginationPlugin" /> 
 
     <commentGenerator type="org.mybatis.generator.internal.CommentChineseGenerator">
-    	<property name="suppressAllComments" value="true"/> 
+    	<property name="suppressAllComments" value="true"/>
+    	<property name="suppressDate" value="true"/>
     	<property name="suppressChineseComments" value="true" />
     	<property name="classComment" value="@title: @todo \n @Description @todo \n @author jinhe.chen \n @date ${date} \n @changeLog:"/>
     	<property name="methodComment" value="@title: title \n@changeLog: \n " />
@@ -48,7 +48,8 @@
     
     
 
-    <javaModelGenerator targetPackage="${generator.pkg.basedata}.model" targetProject="MAVEN">
+    <javaModelGenerator targetPackage="${generator.pkg.basedata}.model" 
+    					exampleTargetPackage="${generator.pkg.basedata}2.model" targetProject="MAVEN">
       <property name="enableSubPackages" value="true" />
       <property name="trimStrings" value="true" />
     </javaModelGenerator>
@@ -62,28 +63,53 @@
     </javaClientGenerator>
     
 
-    <table tableName="tf_user" domainObjectName="User"/>
-    <table tableName="tf_user_token" domainObjectName="UserToken"/>
-    <table tableName="tf_role" domainObjectName="Role"/>
-    <table tableName="tf_user_role" domainObjectName="UserRole"/>
-    <table tableName="tf_user_data_ref" domainObjectName="UserDataRef"/>
-    <table tableName="tf_i18n" domainObjectName="I18n"/>
-    <table tableName="tf_lookup" domainObjectName="Lookup"/>
-    <table tableName="tf_lookup_item" domainObjectName="LookupItem"/>
-    <table tableName="tf_log_db" domainObjectName="LogDb"/>
-    <table tableName="tf_log_login" domainObjectName="LogLogin"/>
-    <table tableName="tf_log_msg" domainObjectName="LogMsg"/>
-    <table tableName="tf_log_msg_detail" domainObjectName="LogMsgDetail"/>
+    <table tableName="tf_user" domainObjectName="User">
+    	 <columnOverride column="cid" javaType="Long" />  
+    </table>
+    <table tableName="tf_user_token" domainObjectName="UserToken">
+    	 <columnOverride column="cid" javaType="Long" />  
+    </table>
+    <table tableName="tf_role" domainObjectName="Role">
+    	 <columnOverride column="cid" javaType="Long" />  
+    </table>
+    <table tableName="tf_user_role" domainObjectName="UserRole">
+    	 <columnOverride column="cid" javaType="Long" />  
+    </table>
+    <table tableName="tf_user_data_ref" domainObjectName="UserDataRef">
+    	 <columnOverride column="cid" javaType="Long" />  
+    </table>
+    <table tableName="tf_i18n" domainObjectName="I18n">
+    	 <columnOverride column="cid" javaType="Long" />  
+    </table>
+    <table tableName="tf_lookup" domainObjectName="Lookup">
+    	 <columnOverride column="cid" javaType="Long" />  
+    </table>
+    <table tableName="tf_lookup_item" domainObjectName="LookupItem">
+    	 <columnOverride column="cid" javaType="Long" />  
+    </table>
+    <table tableName="tf_log_db" domainObjectName="LogDb">
+    	 <columnOverride column="cid" javaType="Long" />  
+    </table>
+    <table tableName="tf_log_login" domainObjectName="LogLogin">
+    	 <columnOverride column="cid" javaType="Long" />  
+    </table>
+    <table tableName="tf_log_msg" domainObjectName="LogMsg">
+    	 <columnOverride column="cid" javaType="Long" />  
+    </table>
+    <table tableName="tf_log_msg_detail" domainObjectName="LogMsgDetail">
+    	 <columnOverride column="cid" javaType="Long" />  
+    </table>
   </context>
   
-  <!-- extdata -->
+  <!-- extdata 
   <context id="extdata"  targetRuntime="MyBatis3">
     <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
     <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
     <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
-    <plugin type="org.mybatis.generator.plugins.MapperPaginationPlugin" /> 
+    
     <commentGenerator type="org.mybatis.generator.internal.CommentChineseGenerator">
-    	<property name="suppressAllComments" value="true"/> 
+    	<property name="suppressAllComments" value="true"/>
+    	<property name="suppressDate" value="true"/>
     	<property name="suppressChineseComments" value="true" />
     	<property name="classComment" value="@title: @todo \n @Description @todo \n @author jinhe.chen \n @date ${date} \n @changeLog:"/>
     	<property name="methodComment" value="@title: title \n@changeLog: \n " />
@@ -111,21 +137,32 @@
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
 
-    <table tableName="te_table" />
-    <table tableName="te_table_define" />
-    <table tableName="tg_column" />
-    <table tableName="tg_row" />
-    <table tableName="tg_table_type" />
+    <table tableName="te_table" >
+    	 <columnOverride column="cid" javaType="Long" />  
+    </table>
+    <table tableName="te_table_define" >
+    	 <columnOverride column="cid" javaType="Long" />  
+    </table>
+    <table tableName="te_column" >
+    	 <columnOverride column="cid" javaType="Long" />  
+    </table>
+    <table tableName="te_row" >
+    	 <columnOverride column="cid" javaType="Long" />  
+    </table>
+    <table tableName="te_table_type" >
+    	 <columnOverride column="cid" javaType="Long" />  
+    </table>
   </context>
-  
-  <!-- gateway interface -->
+  -->
+  <!-- gateway interface
   <context id="gateway"  targetRuntime="MyBatis3">
     <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
     <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
     <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
-    <plugin type="org.mybatis.generator.plugins.MapperPaginationPlugin" /> 
+    
     <commentGenerator type="org.mybatis.generator.internal.CommentChineseGenerator">
-    	<property name="suppressAllComments" value="true"/> 
+    	<property name="suppressAllComments" value="true"/>
+    	<property name="suppressDate" value="true"/>  
     	<property name="suppressChineseComments" value="true" />
     	<property name="classComment" value="@title: @todo \n @Description @todo \n @author jinhe.chen \n @date ${date} \n @changeLog:"/>
     	<property name="methodComment" value="@title: title \n@changeLog: \n " />
@@ -149,7 +186,6 @@
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
 
-    <table tableName="tg_user"  domainObjectName="User"/>
     <table tableName="tg_role" domainObjectName="Role"/>
     <table tableName="tg_role_service_func" domainObjectName="RoleServiceFunc"/>
     <table tableName="tg_user_role" domainObjectName="UserRole"/>
@@ -157,7 +193,8 @@
     <table tableName="tg_service_info" domainObjectName="ServiceInfo"/>
     <table tableName="tg_service_func" domainObjectName="ServiceFunc"/>
     <table tableName="tg_system_service_rel" domainObjectName="SystemServiceRel"/>
-    <table tableName="tg_user_service_rel" domainObjectName="UserServiceRel"/>
+    <table tableName="tg_user_service_version" domainObjectName="UserServiceVersion"/>
   
   </context>
+   -->
 </generatorConfiguration>

@@ -29,11 +29,10 @@
     <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
     <plugin type="org.mybatis.generator.plugins.MapperPaginationPlugin" /> 
 
-    <!-- -->
     <commentGenerator type="org.mybatis.generator.internal.CommentChineseGenerator">
     	<property name="suppressAllComments" value="true"/> 
     	<property name="suppressChineseComments" value="true" />
-    	<property name="classComment" value="@title: @todo \n @Description @todo \n @author jinhe.chen \n @date ${date} \n @changeLog: "/>
+    	<property name="classComment" value="@title: @todo \n @Description @todo \n @author jinhe.chen \n @date ${date} \n @changeLog:"/>
     	<property name="methodComment" value="@title: title \n@changeLog: \n " />
     </commentGenerator> 
 	
@@ -86,7 +85,7 @@
     <commentGenerator type="org.mybatis.generator.internal.CommentChineseGenerator">
     	<property name="suppressAllComments" value="true"/> 
     	<property name="suppressChineseComments" value="true" />
-    	<property name="classComment" value="@title: @todo \n @Description @todo \n @author jinhe.chen \n @date ${date} \n @changeLog: "/>
+    	<property name="classComment" value="@title: @todo \n @Description @todo \n @author jinhe.chen \n @date ${date} \n @changeLog:"/>
     	<property name="methodComment" value="@title: title \n@changeLog: \n " />
     </commentGenerator> 
 
@@ -128,7 +127,7 @@
     <commentGenerator type="org.mybatis.generator.internal.CommentChineseGenerator">
     	<property name="suppressAllComments" value="true"/> 
     	<property name="suppressChineseComments" value="true" />
-    	<property name="classComment" value="@title: @todo \n @Description @todo \n @author jinhe.chen \n @date ${date} \n @changeLog: "/>
+    	<property name="classComment" value="@title: @todo \n @Description @todo \n @author jinhe.chen \n @date ${date} \n @changeLog:"/>
     	<property name="methodComment" value="@title: title \n@changeLog: \n " />
     </commentGenerator> 
 

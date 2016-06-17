@@ -103,7 +103,7 @@
 <!ATTLIST javaModelGenerator
   targetPackage CDATA #REQUIRED
   targetProject CDATA #REQUIRED
-  exampleTargetPackage CDATA #REQUIRED>
+  exampleTargetPackage CDATA #IMPLIED>
 
 <!--
   The javaTypeResolver element is used to define properties of the Java Type Resolver.

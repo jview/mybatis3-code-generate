@@ -29,12 +29,11 @@
     <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
     <plugin type="org.mybatis.generator.plugins.MapperPaginationPlugin" /> 
 
-    <!-- -->
     <commentGenerator type="org.mybatis.generator.internal.CommentChineseGenerator">
-    	<property name="suppressAllComments" value="true"/> 
-    	<property name="suppressChineseComments" value="true" />
-    	<property name="classComment" value="@title: @todo \n @Description @todo \n @author jinhe.chen \n @date ${date} \n @changeLog: "/>
-    	<property name="methodComment" value="@title: title \n@changeLog: \n " />
+    	<property name="suppressAllComments" value="${comment.suppressAllComments}"/> 
+    	<property name="suppressChineseComments" value="${comment.suppressChineseComments}" />
+    	<property name="classComment" value="${comment.classComment}"/>
+    	<property name="methodComment" value="${comment.methodComment}" />
     </commentGenerator> 
 	
 
@@ -84,10 +83,10 @@
     <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
     <plugin type="org.mybatis.generator.plugins.MapperPaginationPlugin" /> 
     <commentGenerator type="org.mybatis.generator.internal.CommentChineseGenerator">
-    	<property name="suppressAllComments" value="true"/> 
-    	<property name="suppressChineseComments" value="true" />
-    	<property name="classComment" value="@title: @todo \n @Description @todo \n @author jinhe.chen \n @date ${date} \n @changeLog: "/>
-    	<property name="methodComment" value="@title: title \n@changeLog: \n " />
+    	<property name="suppressAllComments" value="${comment.suppressAllComments}"/> 
+    	<property name="suppressChineseComments" value="${comment.suppressChineseComments}" />
+    	<property name="classComment" value="${comment.classComment}"/>
+    	<property name="methodComment" value="${comment.methodComment}" />
     </commentGenerator> 
 
     <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="${database.url}" 
@@ -126,10 +125,10 @@
     <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
     <plugin type="org.mybatis.generator.plugins.MapperPaginationPlugin" /> 
     <commentGenerator type="org.mybatis.generator.internal.CommentChineseGenerator">
-    	<property name="suppressAllComments" value="true"/> 
-    	<property name="suppressChineseComments" value="true" />
-    	<property name="classComment" value="@title: @todo \n @Description @todo \n @author jinhe.chen \n @date ${date} \n @changeLog: "/>
-    	<property name="methodComment" value="@title: title \n@changeLog: \n " />
+    	<property name="suppressAllComments" value="${comment.suppressAllComments}"/> 
+    	<property name="suppressChineseComments" value="${comment.suppressChineseComments}" />
+    	<property name="classComment" value="${comment.classComment}"/>
+    	<property name="methodComment" value="${comment.methodComment}" />
     </commentGenerator> 
 
     <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="${database.url}" 

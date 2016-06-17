@@ -27,12 +27,27 @@
     <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
     <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
     <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
-    <commentGenerator> <property name="suppressAllComments" value="true" /></commentGenerator> 
+    <plugin type="org.mybatis.generator.plugins.MapperPaginationPlugin" /> 
+
+    <!-- -->
+    <commentGenerator type="org.mybatis.generator.internal.CommentChineseGenerator">
+    	<property name="suppressAllComments" value="true"/> 
+    	<property name="suppressChineseComments" value="true" />
+    	<property name="classComment" value="@title: @todo \n @Description @todo \n @author jinhe.chen \n @date ${date} \n @changeLog: "/>
+    	<property name="methodComment" value="@title: title \n@changeLog: \n " />
+    </commentGenerator> 
+	
 
     <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="${database.url}" 
     				userId="${database.user}" 
     				password="${database.password}">
 	</jdbcConnection>
+	
+	<javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+    
+    
 
     <javaModelGenerator targetPackage="${generator.pkg.basedata}.model" targetProject="MAVEN">
       <property name="enableSubPackages" value="true" />
@@ -46,6 +61,7 @@
     <javaClientGenerator type="XMLMAPPER" targetPackage="${generator.pkg.basedata}.mapper"  targetProject="MAVEN">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
+    
 
     <table tableName="tf_user" domainObjectName="User"/>
     <table tableName="tf_user_token" domainObjectName="UserToken"/>
@@ -66,12 +82,22 @@
     <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
     <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
     <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
-    <commentGenerator> <property name="suppressAllComments" value="true" /></commentGenerator> 
+    <plugin type="org.mybatis.generator.plugins.MapperPaginationPlugin" /> 
+    <commentGenerator type="org.mybatis.generator.internal.CommentChineseGenerator">
+    	<property name="suppressAllComments" value="true"/> 
+    	<property name="suppressChineseComments" value="true" />
+    	<property name="classComment" value="@title: @todo \n @Description @todo \n @author jinhe.chen \n @date ${date} \n @changeLog: "/>
+    	<property name="methodComment" value="@title: title \n@changeLog: \n " />
+    </commentGenerator> 
 
     <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="${database.url}" 
     				userId="${database.user}" 
     				password="${database.password}">
 	</jdbcConnection>
+	
+	<javaTypeResolver>  
+		<property name="forceBigDecimals" value="false" />  
+    </javaTypeResolver>  
 
     <javaModelGenerator targetPackage="${generator.pkg.extdata}.model" targetProject="MAVEN">
       <property name="enableSubPackages" value="true" />
@@ -98,7 +124,13 @@
     <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
     <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
     <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
-    <commentGenerator> <property name="suppressAllComments" value="true" /></commentGenerator> 
+    <plugin type="org.mybatis.generator.plugins.MapperPaginationPlugin" /> 
+    <commentGenerator type="org.mybatis.generator.internal.CommentChineseGenerator">
+    	<property name="suppressAllComments" value="true"/> 
+    	<property name="suppressChineseComments" value="true" />
+    	<property name="classComment" value="@title: @todo \n @Description @todo \n @author jinhe.chen \n @date ${date} \n @changeLog: "/>
+    	<property name="methodComment" value="@title: title \n@changeLog: \n " />
+    </commentGenerator> 
 
     <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="${database.url}" 
     				userId="${database.user}" 

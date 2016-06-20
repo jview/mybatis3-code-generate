@@ -53,7 +53,7 @@
       <property name="rootClass" value="ai.yc.common.core.entity.BaseEntity"/>
       <property name="enableSubPackages" value="true" />
       <property name="trimStrings" value="true" />
-      <property name="classEndStr" value="VO" />
+      <property name="classEndStr" value="PO" />
     </javaModelGenerator>
 
     <sqlMapGenerator targetPackage="${generator.pkg.basedata}.xml"  targetProject="MAVEN">
@@ -104,7 +104,7 @@
       <property name="rootClass" value="ai.yc.common.core.entity.BaseEntity"/>
       <property name="enableSubPackages" value="true" />
       <property name="trimStrings" value="true" />
-      <property name="classEndStr" value="VO" />
+      <property name="classEndStr" value="PO" />
     </javaModelGenerator>
 
     <sqlMapGenerator targetPackage="${generator.pkg.extdata}.xml"  targetProject="MAVEN">
@@ -117,9 +117,9 @@
 
     <table tableName="te_table" domainObjectName="Table"/>
     <table tableName="te_table_define" domainObjectName="TableDefine"/>
-    <table tableName="tg_column" domainObjectName="Column"/>
-    <table tableName="tg_row" domainObjectName="Row"/>
-    <table tableName="tg_table_type" domainObjectName="TableType"/>
+    <table tableName="te_column" domainObjectName="Column"/>
+    <table tableName="te_row" domainObjectName="Row"/>
+    <table tableName="te_table_type" domainObjectName="TableType"/>
   </context>
   
   <!-- gateway interface -->

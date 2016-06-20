@@ -20,6 +20,7 @@ import static org.mybatis.generator.internal.util.messages.Messages.getString;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.Properties;
 
 import org.mybatis.generator.config.ColumnOverride;
@@ -349,10 +350,47 @@ public class MyBatisGeneratorConfigurationParser {
                 parseColumnRenamingRule(tc, childNode);
             }
         }
+        
+        
+        Iterator<Object> keys=this.properties.keySet().iterator();
+        String key=null;
+        while(keys.hasNext()){
+        	key=(String)keys.next();
+        	if(key.startsWith("columnOverride.")){
+				parseColumnOverrideByContext(tc, key);
+        	}
+        }
+        
+    }
+    
+    /**
+     * columnOverride.javaType.cid=java.lang.Long
+     * <columnOverride column="cid" javaType="java.lang.Long" />
+     * @param key
+     * @param context
+     * @return Node
+     */
+    private void parseColumnOverrideByContext(TableConfiguration tc, String key){
+    	String keyValue=this.properties.getProperty(key);
+    	key=key.substring("columnOverride.".length());
+    	String type=key.substring(0, key.indexOf("."));
+    	key=key.substring(key.indexOf(".")+1);
+    	String column=key;
+    	
+    	Properties attributes=new Properties();
+    	attributes.put("column", column);
+    	//type=javaType/jdbcType
+    	attributes.put(type, keyValue);
+    	parseColumnOverride(tc, attributes, null);
+    }
+    
+    private void parseColumnOverride(TableConfiguration tc, Node node) {
+    	Properties attributes = parseAttributes(node);
+    	parseColumnOverride(tc, attributes, node);
     }
 
-    private void parseColumnOverride(TableConfiguration tc, Node node) {
-        Properties attributes = parseAttributes(node);
+    private void parseColumnOverride(TableConfiguration tc, Properties attributes, Node node) {
+//        Properties attributes = parseAttributes(node);
         String column = attributes.getProperty("column"); //$NON-NLS-1$
         String property = attributes.getProperty("property"); //$NON-NLS-1$
         String javaType = attributes.getProperty("javaType"); //$NON-NLS-1$
@@ -383,6 +421,7 @@ public class MyBatisGeneratorConfigurationParser {
             co.setColumnNameDelimited(isTrue(delimitedColumnName));
         }
 
+        if(node!=null){
         NodeList nodeList = node.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node childNode = nodeList.item(i);
@@ -394,6 +433,7 @@ public class MyBatisGeneratorConfigurationParser {
             if ("property".equals(childNode.getNodeName())) { //$NON-NLS-1$
                 parseProperty(co, childNode);
             }
+        }
         }
 
         tc.addColumnOverride(co);

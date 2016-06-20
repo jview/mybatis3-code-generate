@@ -91,7 +91,7 @@
                        </goals>  
                        <configuration>  
                            <encoding>UTF-8</encoding>  
-                           <outputDirectory>${project.build.directory}/${project.deploy}/intf
+                           <outputDirectory>${project.build.directory}/generated-sources/intf
                            </outputDirectory>  
                            <resources>  
                                <resource>  
@@ -112,7 +112,7 @@
                        </goals>  
                        <configuration>  
                            <encoding>UTF-8</encoding>  
-                           <outputDirectory>${project.build.directory}/${project.deploy}/impl
+                           <outputDirectory>${project.build.directory}/generated-sources/impl
                            </outputDirectory>  
                            <resources>  
                                <resource>  
@@ -120,7 +120,10 @@
                                    <filtering>true</filtering>   
                                    <excludes>  
                                        <exclude>**/model/*.java</exclude>    
-                                   </excludes>  
+                                   </excludes>
+                                   <includes>  
+                                       <include>**/*.java</include>    
+                                   </includes>   
                                </resource>  
                            </resources>  
                        </configuration>  

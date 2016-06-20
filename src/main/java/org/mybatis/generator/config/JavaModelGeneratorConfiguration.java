@@ -91,7 +91,9 @@ public class JavaModelGeneratorConfiguration extends PropertyHolder {
 
     public void validate(List<String> errors, String contextId) {
     	if(exampleTargetPackage==null){
-    		exampleTargetPackage=targetPackage+"Exampe";
+    		exampleTargetPackage=targetPackage;
+    		exampleTargetPackage=exampleTargetPackage.substring(0, exampleTargetPackage.lastIndexOf("."));
+    		exampleTargetPackage+=".example";
     		System.out.println("----warn--exampleTargetPackage is null, use:"+exampleTargetPackage+" as default");
     	}
         if (!stringHasValue(targetProject)) {

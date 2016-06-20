@@ -211,6 +211,14 @@ public class MyBatisGeneratorConfigurationParser {
             }
         }
     }
+    
+    private String getExampleValue(String key, String defaultValue){
+    	String v=(String)this.properties.get("javaModel."+key);
+        if(v!=null){
+        	return v;
+        }
+        return defaultValue;
+    }
 
     private void parseTable(Context context, Node node) {
         TableConfiguration tc = new TableConfiguration(context);
@@ -223,6 +231,7 @@ public class MyBatisGeneratorConfigurationParser {
         String domainObjectName = attributes.getProperty("domainObjectName"); //$NON-NLS-1$
         String alias = attributes.getProperty("alias"); //$NON-NLS-1$
         String enableInsert = attributes.getProperty("enableInsert"); //$NON-NLS-1$
+       
         String enableSelectByPrimaryKey = attributes
                 .getProperty("enableSelectByPrimaryKey"); //$NON-NLS-1$
         String enableSelectByExample = attributes
@@ -241,6 +250,20 @@ public class MyBatisGeneratorConfigurationParser {
                 .getProperty("selectByPrimaryKeyQueryId"); //$NON-NLS-1$
         String selectByExampleQueryId = attributes
                 .getProperty("selectByExampleQueryId"); //$NON-NLS-1$
+
+        //global config
+        enableSelectByExample=this.getExampleValue("enableSelectByExample", enableSelectByExample);
+        enableDeleteByExample=this.getExampleValue("enableDeleteByExample", enableDeleteByExample);
+        enableCountByExample=this.getExampleValue("enableCountByExample", enableCountByExample);
+        enableUpdateByExample=this.getExampleValue("enableUpdateByExample", enableUpdateByExample);
+        selectByExampleQueryId=this.getExampleValue("selectByExampleQueryId", selectByExampleQueryId);
+        
+        enableSelectByPrimaryKey=this.getExampleValue("enableSelectByPrimaryKey", enableSelectByPrimaryKey);
+        enableUpdateByPrimaryKey=this.getExampleValue("enableUpdateByPrimaryKey", enableUpdateByPrimaryKey);
+        enableDeleteByPrimaryKey=this.getExampleValue("enableDeleteByPrimaryKey", enableDeleteByPrimaryKey);
+        selectByPrimaryKeyQueryId=this.getExampleValue("selectByPrimaryKeyQueryId", selectByPrimaryKeyQueryId);
+       
+
         String modelType = attributes.getProperty("modelType"); //$NON-NLS-1$
         String escapeWildcards = attributes.getProperty("escapeWildcards"); //$NON-NLS-1$
         String delimitIdentifiers = attributes

@@ -52,7 +52,7 @@
     					exampleTargetPackage="${generator.pkg.basedata}.example" targetProject="MAVEN">
       <property name="rootClass" value="ai.yc.common.core.entity.BaseEntity"/>
       <property name="enableSubPackages" value="true" />
-      <property name="trimStrings" value="true" />
+      <property name="trimStrings" value="false" />
       <property name="classEndStr" value="PO" />
     </javaModelGenerator>
 
@@ -103,7 +103,7 @@
     <javaModelGenerator targetPackage="${generator.pkg.extdata}.model" targetProject="MAVEN">
       <property name="rootClass" value="ai.yc.common.core.entity.BaseEntity"/>
       <property name="enableSubPackages" value="true" />
-      <property name="trimStrings" value="true" />
+      <property name="trimStrings" value="false" />
       <property name="classEndStr" value="PO" />
     </javaModelGenerator>
 
@@ -142,7 +142,7 @@
     <javaModelGenerator targetPackage="${generator.pkg.gateway}.model" targetProject="MAVEN">
     	<property name="rootClass" value="ai.yc.common.core.entity.BaseEntity"/>
       <property name="enableSubPackages" value="true" />
-      <property name="trimStrings" value="true" />
+      <property name="trimStrings" value="false" />
     </javaModelGenerator>
 
     <sqlMapGenerator targetPackage="${generator.pkg.gateway}.xml"  targetProject="MAVEN">

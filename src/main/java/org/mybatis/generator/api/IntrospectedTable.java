@@ -852,10 +852,15 @@ public abstract class IntrospectedTable {
         sb.append("Key"); //$NON-NLS-1$
         setPrimaryKeyType(sb.toString());
 
+        String domainObjectName=fullyQualifiedTable.getDomainObjectName();
+        String classEndStr=config.getProperty("classEndStr");
+        if(classEndStr!=null){
+        	domainObjectName+=classEndStr;
+        }
         sb.setLength(0);
         sb.append(pakkage);
         sb.append('.');
-        sb.append(fullyQualifiedTable.getDomainObjectName());
+        sb.append(domainObjectName);
         setBaseRecordType(sb.toString());
 
         sb.setLength(0);

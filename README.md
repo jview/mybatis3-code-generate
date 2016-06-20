@@ -6,8 +6,9 @@ https://github.com/mybatis/generator
  Change MyBatis Generator (MBG) for my project
 ---------------------------------------------
 1,Support table comment to class field comment  
-2,Support split example class from model  
-3,Support copy class to diff fold  ﻿
+2,Support define exampleTargetPackage on javaModelGenerator
+3,Support generate class add VO,such as T_USER to UserVO 
+4,Support copy class to diff fold  ﻿
 
 
 

@@ -20,8 +20,10 @@ import static org.mybatis.generator.internal.util.messages.Messages.getString;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Properties;
+import java.util.Set;
 
 import org.mybatis.generator.config.ColumnOverride;
 import org.mybatis.generator.config.ColumnRenamingRule;
@@ -212,12 +214,12 @@ public class MyBatisGeneratorConfigurationParser {
         }
     }
     
-    private String getExampleValue(String key, String defaultValue){
+    private String getJavaModelValue(String key, Properties attributes){
     	String v=(String)this.properties.get("javaModel."+key);
-        if(v!=null){
-        	return v;
+        if(attributes.getProperty(key)!=null){
+        	v=attributes.getProperty(key);
         }
-        return defaultValue;
+        return v;
     }
 
     private void parseTable(Context context, Node node) {
@@ -231,38 +233,39 @@ public class MyBatisGeneratorConfigurationParser {
         String domainObjectName = attributes.getProperty("domainObjectName"); //$NON-NLS-1$
         String alias = attributes.getProperty("alias"); //$NON-NLS-1$
         String enableInsert = attributes.getProperty("enableInsert"); //$NON-NLS-1$
-       
-        String enableSelectByPrimaryKey = attributes
-                .getProperty("enableSelectByPrimaryKey"); //$NON-NLS-1$
-        String enableSelectByExample = attributes
-                .getProperty("enableSelectByExample"); //$NON-NLS-1$
-        String enableUpdateByPrimaryKey = attributes
-                .getProperty("enableUpdateByPrimaryKey"); //$NON-NLS-1$
-        String enableDeleteByPrimaryKey = attributes
-                .getProperty("enableDeleteByPrimaryKey"); //$NON-NLS-1$
-        String enableDeleteByExample = attributes
-                .getProperty("enableDeleteByExample"); //$NON-NLS-1$
-        String enableCountByExample = attributes
-                .getProperty("enableCountByExample"); //$NON-NLS-1$
-        String enableUpdateByExample = attributes
-                .getProperty("enableUpdateByExample"); //$NON-NLS-1$
-        String selectByPrimaryKeyQueryId = attributes
-                .getProperty("selectByPrimaryKeyQueryId"); //$NON-NLS-1$
-        String selectByExampleQueryId = attributes
-                .getProperty("selectByExampleQueryId"); //$NON-NLS-1$
-
-        //global config
-        enableSelectByExample=this.getExampleValue("enableSelectByExample", enableSelectByExample);
-        enableDeleteByExample=this.getExampleValue("enableDeleteByExample", enableDeleteByExample);
-        enableCountByExample=this.getExampleValue("enableCountByExample", enableCountByExample);
-        enableUpdateByExample=this.getExampleValue("enableUpdateByExample", enableUpdateByExample);
-        selectByExampleQueryId=this.getExampleValue("selectByExampleQueryId", selectByExampleQueryId);
         
-        enableSelectByPrimaryKey=this.getExampleValue("enableSelectByPrimaryKey", enableSelectByPrimaryKey);
-        enableUpdateByPrimaryKey=this.getExampleValue("enableUpdateByPrimaryKey", enableUpdateByPrimaryKey);
-        enableDeleteByPrimaryKey=this.getExampleValue("enableDeleteByPrimaryKey", enableDeleteByPrimaryKey);
-        selectByPrimaryKeyQueryId=this.getExampleValue("selectByPrimaryKeyQueryId", selectByPrimaryKeyQueryId);
+
+        
+        String enableSelectByExample=this.getJavaModelValue("enableSelectByExample", attributes);
+        String enableDeleteByExample=this.getJavaModelValue("enableDeleteByExample", attributes);
+        String enableCountByExample=this.getJavaModelValue("enableCountByExample", attributes);
+        String enableUpdateByExample=this.getJavaModelValue("enableUpdateByExample", attributes);
+        String selectByExampleQueryId=this.getJavaModelValue("selectByExampleQueryId", attributes);
+        
+        String enableSelectByPrimaryKey=this.getJavaModelValue("enableSelectByPrimaryKey", attributes);
+        String enableUpdateByPrimaryKey=this.getJavaModelValue("enableUpdateByPrimaryKey", attributes);
+        String enableDeleteByPrimaryKey=this.getJavaModelValue("enableDeleteByPrimaryKey", attributes);
+        String selectByPrimaryKeyQueryId=this.getJavaModelValue("selectByPrimaryKeyQueryId", attributes);
        
+//        String enableSelectByPrimaryKey = attributes
+//                .getProperty("enableSelectByPrimaryKey"); //$NON-NLS-1$
+//        String enableSelectByExample = attributes
+//                .getProperty("enableSelectByExample"); //$NON-NLS-1$
+//        String enableUpdateByPrimaryKey = attributes
+//                .getProperty("enableUpdateByPrimaryKey"); //$NON-NLS-1$
+//        String enableDeleteByPrimaryKey = attributes
+//                .getProperty("enableDeleteByPrimaryKey"); //$NON-NLS-1$
+//        String enableDeleteByExample = attributes
+//                .getProperty("enableDeleteByExample"); //$NON-NLS-1$
+//        String enableCountByExample = attributes
+//                .getProperty("enableCountByExample"); //$NON-NLS-1$
+//        String enableUpdateByExample = attributes
+//                .getProperty("enableUpdateByExample"); //$NON-NLS-1$
+//        String selectByPrimaryKeyQueryId = attributes
+//                .getProperty("selectByPrimaryKeyQueryId"); //$NON-NLS-1$
+//        String selectByExampleQueryId = attributes
+//                .getProperty("selectByExampleQueryId"); //$NON-NLS-1$
+
 
         String modelType = attributes.getProperty("modelType"); //$NON-NLS-1$
         String escapeWildcards = attributes.getProperty("escapeWildcards"); //$NON-NLS-1$
@@ -353,6 +356,8 @@ public class MyBatisGeneratorConfigurationParser {
             tc.setAllColumnDelimitingEnabled(isTrue(delimitAllColumns));
         }
 
+        Set<String> existColumnSets = new HashSet<String>();
+        String column=null;
         NodeList nodeList = node.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node childNode = nodeList.item(i);
@@ -364,7 +369,8 @@ public class MyBatisGeneratorConfigurationParser {
             if ("property".equals(childNode.getNodeName())) { //$NON-NLS-1$
                 parseProperty(tc, childNode);
             } else if ("columnOverride".equals(childNode.getNodeName())) { //$NON-NLS-1$
-                parseColumnOverride(tc, childNode);
+                column=parseColumnOverride(tc, childNode);
+                existColumnSets.add(column);
             } else if ("ignoreColumn".equals(childNode.getNodeName())) { //$NON-NLS-1$
                 parseIgnoreColumn(tc, childNode);
             } else if ("generatedKey".equals(childNode.getNodeName())) { //$NON-NLS-1$
@@ -380,6 +386,9 @@ public class MyBatisGeneratorConfigurationParser {
         while(keys.hasNext()){
         	key=(String)keys.next();
         	if(key.startsWith("columnOverride.")){
+        		if(existColumnSets.contains(key.substring(key.lastIndexOf(".")+1))){//ignore by exist table config
+        			continue;
+        		}
 				parseColumnOverrideByContext(tc, key);
         	}
         }
@@ -393,7 +402,7 @@ public class MyBatisGeneratorConfigurationParser {
      * @param context
      * @return Node
      */
-    private void parseColumnOverrideByContext(TableConfiguration tc, String key){
+    private String parseColumnOverrideByContext(TableConfiguration tc, String key){
     	String keyValue=this.properties.getProperty(key);
     	key=key.substring("columnOverride.".length());
     	String type=key.substring(0, key.indexOf("."));
@@ -404,15 +413,15 @@ public class MyBatisGeneratorConfigurationParser {
     	attributes.put("column", column);
     	//type=javaType/jdbcType
     	attributes.put(type, keyValue);
-    	parseColumnOverride(tc, attributes, null);
+    	return parseColumnOverride(tc, attributes, null);
     }
     
-    private void parseColumnOverride(TableConfiguration tc, Node node) {
+    private String parseColumnOverride(TableConfiguration tc, Node node) {
     	Properties attributes = parseAttributes(node);
-    	parseColumnOverride(tc, attributes, node);
+    	return parseColumnOverride(tc, attributes, node);
     }
 
-    private void parseColumnOverride(TableConfiguration tc, Properties attributes, Node node) {
+    private String parseColumnOverride(TableConfiguration tc, Properties attributes, Node node) {
 //        Properties attributes = parseAttributes(node);
         String column = attributes.getProperty("column"); //$NON-NLS-1$
         String property = attributes.getProperty("property"); //$NON-NLS-1$
@@ -460,6 +469,7 @@ public class MyBatisGeneratorConfigurationParser {
         }
 
         tc.addColumnOverride(co);
+        return column;
     }
 
     private void parseGeneratedKey(TableConfiguration tc, Node node) {

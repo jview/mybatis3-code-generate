@@ -45,9 +45,7 @@
 	<javaTypeResolver >
       <property name="forceBigDecimals" value="false" />
       <property name="Long.maxLength" value="${javaTypeResolver.Long.maxLength}" />
-    </javaTypeResolver>
-    
-    
+    </javaTypeResolver> 
 
     <javaModelGenerator targetPackage="${generator.pkg.basedata}.model" 
     					exampleTargetPackage="${generator.pkg.basedata}.example" targetProject="MAVEN">
@@ -98,7 +96,8 @@
 	</jdbcConnection>
 	
 	<javaTypeResolver>  
-		<property name="forceBigDecimals" value="false" />  
+		<property name="forceBigDecimals" value="false" />
+		<property name="Long.maxLength" value="${javaTypeResolver.Long.maxLength}" />
     </javaTypeResolver>  
 
     <javaModelGenerator targetPackage="${generator.pkg.extdata}.model" targetProject="MAVEN">
@@ -140,6 +139,11 @@
     				password="${database.password}">
 	</jdbcConnection>
 
+	<javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+      <property name="Long.maxLength" value="${javaTypeResolver.Long.maxLength}" />
+    </javaTypeResolver>
+    
     <javaModelGenerator targetPackage="${generator.pkg.gateway}.model" targetProject="MAVEN">
     	<property name="rootClass" value="ai.yc.common.core.entity.BaseEntity"/>
       <property name="enableSubPackages" value="true" />

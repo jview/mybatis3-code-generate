@@ -133,7 +133,7 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
                 .get(introspectedColumn.getJdbcType());
         
         //javaTypeResolver.Long.maxLength
-        int maxLongLength=18;
+        int maxLongLength=20;
         String longLengths= this.properties.getProperty("javaTypeResolver.Long.maxLength");
         if(longLengths!=null){
         	longLengths=longLengths.trim();

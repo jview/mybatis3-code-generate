@@ -131,13 +131,23 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
         FullyQualifiedJavaType answer;
         JdbcTypeInformation jdbcTypeInformation = typeMap
                 .get(introspectedColumn.getJdbcType());
+        
+        //javaTypeResolver.Long.maxLength
+        int maxLongLength=18;
+        String longLengths= this.properties.getProperty("javaTypeResolver.Long.maxLength");
+        if(longLengths!=null){
+        	longLengths=longLengths.trim();
+        	maxLongLength=Integer.parseInt(longLengths);
+        }
+        //end
+        
 
         if (jdbcTypeInformation == null) {
             switch (introspectedColumn.getJdbcType()) {
             case Types.DECIMAL:
             case Types.NUMERIC:
                 if (introspectedColumn.getScale() > 0
-                        || introspectedColumn.getLength() > 20
+                        || introspectedColumn.getLength() > maxLongLength//change
                         || forceBigDecimals) {
                     answer = new FullyQualifiedJavaType(BigDecimal.class
                             .getName());

@@ -44,6 +44,7 @@
 	
 	<javaTypeResolver >
       <property name="forceBigDecimals" value="false" />
+      <property name="Long.maxLength" value="${javaTypeResolver.Long.maxLength}" />
     </javaTypeResolver>
     
     

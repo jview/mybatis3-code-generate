@@ -134,7 +134,7 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
         
         //javaTypeResolver.Long.maxLength
         int maxLongLength=20;
-        String longLengths= this.properties.getProperty("javaTypeResolver.Long.maxLength");
+        String longLengths= this.properties.getProperty("Long.maxLength");
         if(longLengths!=null){
         	longLengths=longLengths.trim();
         	maxLongLength=Integer.parseInt(longLengths);

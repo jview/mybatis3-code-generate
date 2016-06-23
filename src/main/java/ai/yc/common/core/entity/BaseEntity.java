@@ -6,7 +6,7 @@ import java.util.Date;
 public class BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private Long cid;
+	protected Long id;
 	private String code;
 	private String name;
 	private Integer version = 0;
@@ -31,12 +31,14 @@ public class BaseEntity implements Serializable {
     /** 修改时间 */
     private Date modifyDate;
 
-	public Long getCid() {
-		return cid;
+	
+
+	public Long getId() {
+		return id;
 	}
 
-	public void setCid(Long cid) {
-		this.cid = cid;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getCode() {
